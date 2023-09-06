@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Simple projectile that moves towards the mouse with constant speed
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private Vector3 Direction;
@@ -11,7 +12,7 @@ public class Projectile : MonoBehaviour
     {
         Vector3 playerLocation = FindObjectOfType<SimplePlayerMovement>().transform.position;
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Direction = (mousePosition - playerLocation).normalized;
+        Direction = (new Vector3(mousePosition.x - playerLocation.x, mousePosition.y - playerLocation.y, 0f)).normalized;
     }
 
     private void Update()
